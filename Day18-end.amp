@@ -1,0 +1,38 @@
+%%[
+ var @AppointmentDate, @appointmentLocation, @appointmentCode, @contentBlockName,  @instructions, @statusCode,
+ set @AppointmentDate = attributeValue('AppointmentDate')
+ set @appointmentLocation = attributeValue('appointmentLocation') 
+ set @appointmentCode = attributeValue('AppointmentCode')
+ 
+ set @formattedDate = FormatDate(@AppointmentDate, "MMM d a\t hh:mm tt")
+ set  = Concat('AppointmentCode_', @AppointmentCode)
+ 
+ set @instructions = ContentBlockByName(@contentBlockName, "Instructions", False, "<ul><li>Arrive early</li></ul>", @statusCode)
+  /* //set @instructions = ContentBlockByName(@contentBlockName, "Instructions", False, '', @statusCode) */
+ 
+ if @statusCode == -1 then
+   set @instructions = ContentBlockByName("Content Builder\30DaysChallenge\Content Blocks\AppointmentCode_generic")
+ endif
+ 
+ 
+]%%
+
+<p>
+Hi %%FirstName%% %%LastName%%  
+</p>
+
+<p>
+This is a friendly reminder that you have a dental appointment scheduled with us on %%=v(@formattedDate)=%%. Our office is located in %%=v(@appointmentLocation)=%%. We look forward to seeing you soon!
+</p>
+<p>
+In preparation for your appointment, here are a few things to keep in mind:
+</p>
+
+%%=v(@instructions)=%%
+
+<p>
+If you need to reschedule your appointment or have any questions, please do not hesitate to contact our office.
+</p>
+<p>
+Thank you for choosing us as your dental care provider. We look forward to seeing you soon.
+</p>

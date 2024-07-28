@@ -1,0 +1,35 @@
+%%[
+  IF (_MessageContext == "PREVIEW") THEN
+]%% 
+<div min-height="150px" style="background-color: #f0f0f0;">
+  <center><span style="color: #3f3f3f; font-size: 16px; line-height: 50px;">This is initialization block for variables. Click to edit {AMPScript}.</span></center>
+</div>
+%%[
+  ENDIF
+
+IF (_MessageContext == "PREVIEW" or _MessageContext == "SEND" or _MessageContext == "VAWP") then
+
+    var @mileage, @services, @servicesCount
+    set @mileage = attributeValue('Mileage')
+    set @services = LookupRows("ampscript30-day25-services","Mileage", @mileage) 
+    set @servicesCount = RowCount(@services)
+
+ENDIF
+]%%
+
+
+<!--  ---------------------------------------------------------------  !-->
+
+%%[
+  IF @servicesCount > 0 THEN
+    for @counter = 1 to @servicesCount do
+      set @serviceRow = row(@services, @counter)
+      set @serviceCode = field(@serviceRow,"Code")    
+      set @serviceName = Concat("service_", @serviceCode)
+      output(contentBlockByName(@serviceName))
+    next @counter
+  ELSE RaiseError('no rows found', true)
+  ENDIF
+  
+  
+]%%

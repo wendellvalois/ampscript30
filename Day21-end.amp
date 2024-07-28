@@ -1,0 +1,35 @@
+%%[
+VAR @FirstName, @LastName, @SendDate, @SubscriberKey, @email
+set @FirstName = attributeValue('FirstName'),
+set @LastName = attributeValue('LastName')
+set @email = attributeValue('email')
+/*set @SendDate = now()*/
+set @SendDate = attributeValue('SendDate')
+
+set @SubscriberKey = attributeValue('SubscriberKey')
+]%%
+
+<p> 
+Hi %%=v(@FirstName)=%%,
+We hope you've been enjoying our services over the past few months. We wanted to remind you that we periodically ask our customers to confirm their interest in receiving our emails.
+</p>
+<p> 
+If you're still interested in receiving our emails, please click the link below to confirm your subscription. It only takes a few seconds!
+</p>
+  <p> 
+<a title="MyPage" href="%%=RedirectTo(CloudPagesURL(32228,
+                                                    'SubscriberKey', @SubscriberKey,
+                                                    'FirstName', @FirstName,
+                                                    'LastName',@LastName,
+                                                    'email',@email,
+                                                    'SendDate',@SendDate))=%%">
+                                                Confirm Subscription here</a>
+</p>
+<p> 
+Thanks for being a valued customer. We look forward to continuing to serve you.
+</p>
+<p> 
+Best regards,
+Next Media
+</p>
+

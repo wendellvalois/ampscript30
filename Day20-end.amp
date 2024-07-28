@@ -1,0 +1,22 @@
+%%[
+  var @surveyUrl, @finalUrl
+  set @surveyUrl = attributeValue('SurveyUrl')
+  set @finalUrl = Concat(@surveyUrl,'&entry.1345373543=',[FirstName],'&entry.1970641631=',[LastName],'&entry.1109494443=',[email])
+]%%
+<p>
+Hi JamesBond,
+Thank you for choosing Next Rental. We value your business and want to improve our services to better serve you. 
+</p>
+<p>
+Please take a moment to complete a short survey about your recent rental. Your feedback helps us to enhance our services. 
+</p>
+<p>
+<a href="%%=RedirectTo(@finalUrl)=%%">Take the survey </a>
+ </p>
+<p>
+Thank you for your time and feedback. We look forward to serving you again. 
+</p>
+<p>
+Best regards,
+Next Rental 
+</p>

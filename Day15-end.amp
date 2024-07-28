@@ -1,0 +1,39 @@
+<style>
+ p {
+   text-align:left
+  }
+</style>
+%%[
+VAR @mileage, @rowsMileage, @rowCount, @currentRow
+set @mileage = attributeValue('Mileage')
+set @rowsMileage = lookupRows("ampscript30-day15-services", 'mileage', @mileage)
+set @rowCount = RowCount(@rowsMileage)
+]%%
+Hi %%FirstName%%,
+<p>
+As we enjoy the remaining days of summer, its time to think about getting your vehicle ready for fall adventures and winter road trips. Now is a great time to check major components like tires, brakes and batteries to help give you confidence on the roads as the days get shorter and the weather begins to change. 
+</p>
+
+<p style="text-align:left">
+  
+
+<strong>Here are recommended services:<br></strong>
+%%[
+for @counter = 1 to @rowCount do
+ set  @currentRow = row(@rowsMileage, @counter)
+]%%
+  - %%=field(@currentRow, "Name")=%% : %%=field(@currentRow, "Description")=%% <br>
+%%[
+next @counter
+]%%
+  
+</p>
+<p>
+  
+
+Visit your nearby Next Auto dealer for all your vehicle needs.
+</p>
+<p>
+Best regards,<br>
+Next Auto
+</p>  

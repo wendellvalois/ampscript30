@@ -1,0 +1,21 @@
+%%[
+  var @rand, @city, @rows, @trail
+  set @city = AttributeValue("City")
+  set @rows = LookupRows("ampscript30-day11-trails","City", @city)
+ if rowcount(@rows) > 0 then
+   set @trail = field(Row(@rows, random(1, rowcount(@rows))), "Trail")
+ endif
+  
+]%%
+
+
+Hello,
+
+Summer is here and it's the perfect time for a hike! We wanted to share some amazing trail destinations in your
+city to explore. Our team has picked out great trails that are perfect for every skill level.
+
+One of the trails we recommend is %%=v(@trail)=%%. It's perfect for hikers of all levels and offers breathtaking 
+views of the surrounding landscape.
+
+Best,
+The Outdoor Equipment Company

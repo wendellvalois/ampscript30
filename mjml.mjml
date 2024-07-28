@@ -1,0 +1,37 @@
+<mjml>
+<mj-head>
+    <mj-attributes>
+        <mj-section background-color="#fff" />        
+    </mj-attributes>
+</mj-head>
+
+    <mj-body background-color="#efefef" width="680px">
+    <mj-section>
+        <mj-column>
+        <mj-divider border-color="#F45E43"></mj-divider>
+        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+        </mj-column>
+    </mj-section>
+    <mj-section>
+        <mj-column>
+            <mj-text>
+            <strong>Teste de coluna 1</strong>
+            Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Si num tem leite então bota uma pinga aí cumpadi!
+            </mj-text>
+        </mj-column>
+        <mj-column>
+            <mj-text>
+                <strong>Teste de coluna 1</strong>
+            Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Si num tem leite então bota uma pinga aí cumpadi!
+            </mj-text>
+        </mj-column>
+            <mj-column>
+            <mj-text>
+                <strong>Teste de coluna 1</strong>
+            Mussum Ipsum, cacilds vidis litro abertis. Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. Atirei o pau no gatis, per gatis num morreus. Copo furadis é disculpa de bebadis, arcu quam euismod magna. Si num tem leite então bota uma pinga aí cumpadi!
+            </mj-text>
+        </mj-column>
+        
+    </mj-section>
+    </mj-body>
+</mjml>

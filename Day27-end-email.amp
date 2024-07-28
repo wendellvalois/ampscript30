@@ -1,0 +1,31 @@
+%%[
+ var @subscriberKey
+ set @subscriberKey = attributeValue("subscriberKey")
+]%%
+
+<p>
+  Hi Tony Stark,
+</p>
+
+<p>
+Thank you for being a NextDesign customer. We'd love to get your feedback on one quick question. Just click on of the numbers below to submit your answer.
+</p>  
+
+<p>
+How likely are you to recommend NextDesign to a friend or a colleague?
+</p>  
+
+<p>
+<strong>Extremely Unlikely</strong>
+</p>
+%%[
+for @counter = 1 to 10 do
+
+]%%
+<a href="%%=CloudPagesUrl(32466, 'subscriberKey', @subscriberKey, 'NPS', @counter)=%%">%%=v(@counter)=%%</a><br>
+%%[
+next @counter
+]%%
+<p>
+  <strong>Extremely Likely</strong>
+</p>  

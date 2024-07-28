@@ -1,0 +1,12 @@
+
+%%[
+var @email, @count, @pointsneeded, @message
+set @email = AttributeValue("Email")
+set @count = Lookup("ampscript30-day12-transactions","Count","Email", @email)
+if @count < 10 then
+  set @pointsneeded = subtract(10, @count)
+  set @message = Concat("and you are ", @pointsneeded, " rent(s) away to earn 100 points..")
+else 
+  set @message = ""
+endif
+]%%

@@ -1,0 +1,29 @@
+%%[
+var @LoyaltyLevel, @levelImage
+set @LoyaltyLevel = attributeValue('LoyaltyLevel')
+
+if @LoyaltyLevel == 'Diamond' then
+  set @levelImage = ContentImageByKey("a807a781-bfdd-4ee6-9dbd-4eafdd95de09")
+elseif @LoyaltyLevel == 'Platinum' then
+  set @levelImage = ContentImageByKey("3e87e82a-2930-4242-a89f-7da9e6a49cb9")
+elseif @LoyaltyLevel == 'Gold' then
+  set @levelImage = ContentImageByKey("c7631d76-5814-46f3-be38-8ba11168d598")
+elseif @LoyaltyLevel == 'Bronze' then
+ set @levelImage = ContentImageByKey("fc99d7b0-f330-4827-bb00-80aa502808f9")
+endif
+]%%
+
+%%=v(@levelImage)=%%
+<p>
+Hello %%FirstName%% %%LastName%%,
+</p>
+<p>
+We wanted to remind you that you have accumulated %%LoyaltyPoints%% travel credits on your account that can be used for your next trip. We encourage you to take advantage of this benefit and redeem your travel credits for your next adventure.
+</p>
+<p>
+Thank you for choosing our travel company for your travel needs. We look forward to helping you plan your next trip. 
+</p>
+<p>
+Best regards,
+Next Travel 
+</p>

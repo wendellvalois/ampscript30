@@ -1,0 +1,54 @@
+%%[  
+  var @LastTransactionId, @lastTransaction,  @SubscriberKey
+  set @LastTransactionId = attributeValue('LastTransactionId')
+  set @SubscriberKey = attributeValue('SubscriberKey')
+  
+  set @lastTransaction = lookuprows("ampscript30-day17-transaction-history", "TransactionId", @LastTransactionId)
+]%%
+
+Hi %%FirstName%% %%LastName%%,
+<p>
+This is the confirmation for the books you borrowed today:<br>
+%%[
+set @lastTransactionRowCount = rowcount(@lastTransaction)
+if @lastTransactionRowCount > 0 then
+  for @counter = 1 to @lastTransactionRowCount do
+    ]%%
+   - %%=field(row(@lastTransaction, @counter),"BookName")=%% <br>
+    %%[
+  next @counter
+else 
+  RaiseError("No books found",
+             true)
+endif
+]%%
+</p>
+<p>
+
+%%[
+    var @historyRows
+    set @historyRows = LookupOrderedRows("ampscript30-day17-transaction-history",
+                    3,
+                    "TransactionDate desc",
+                    "SubscriberKey", @SubscriberKey,
+                    "status","Waiting")
+    set @historyRowsCount = rowcount(@historyRows)
+    if @historyRowsCount > 1 then
+    ]%%
+        Here are the books you borrowed before.<br>
+    %%[
+        for @counter = 1 to @historyRowsCount do
+    ]%%
+        - %%=field(row(@historyRows, @counter),"BookName")=%% <br>
+    %%[
+        next @counter
+    else 
+        RaiseError("No books found",
+                true)
+    endif
+]%%
+</p>
+<p>
+Best regards,
+Next Library
+</p>

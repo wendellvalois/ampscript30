@@ -1,0 +1,40 @@
+%%[
+
+    var @products, @productsCount, @productImgTag
+    set @OrderId = attributeValue('OrderId')
+    set @products = LookupRows("ampscript30-day26-order-details","OrderId", @OrderId) 
+    set @productsCount = RowCount(@products)
+    set @totalPrice = 0    
+    
+    IF @productsCount > 0 THEN
+      for @counter = 1 to @productsCount do
+         set @row = Row(@products, @counter)         
+         set @ProductName = field(@row, "ProductName")
+         set @ProductDesc = field(@row, "ProductDesc")
+         set @ProductImg = field(@row, "ProductImg")
+         set @ProductPrice = field(@row, "ProductPrice")
+         set @ProductQty = field(@row, "ProductQty")
+         set @totalPrice = add(@totalPrice, Multiply(@ProductQty, @ProductPrice))         
+          
+          if @ProductImg == 'product_home' then
+            set @productImgTag = ContentImageById("1332464")
+          elseif @ProductImg == 'product_internet' then
+            set @productImgTag = ContentImageById("1332465")
+          elseif @ProductImg == 'product_tv' then
+            set @productImgTag  = ContentImageById("1332466")
+          endif    
+    
+      next @counter
+    ELSE RaiseError('no rows found', true)
+    ENDIF
+]%%
+
+%%=v(@ProductName)=%%
+%%=v(@ProductDesc)=%%
+%%=v(@productImgTag)=%%
+%%=v(@ProductPrice)=%%
+%%=v(@ProductQty)=%%
+
+%%=v(@totalPrice)=%%
+
+

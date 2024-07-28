@@ -1,0 +1,12 @@
+%%[
+var @defaultCode, @promoCode
+set @defaultCode = "WELCOME15"
+set @promoCode= claimRowValue("ampscript30-day13-promocodes", "PromoCode", "IsClaimed", @defaultCode, "email", emailaddr )
+]%%
+
+Hello %%firstname%% %%lastname%%,
+
+Thank you for your interest to our new product line! Here's your special promo code for your next purchase: %%=v(@promoCode)=%%.
+
+Best regards,
+The Next Beauty

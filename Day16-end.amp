@@ -1,0 +1,28 @@
+%%[
+VAR @orderId, @itemsRows, @itemsRowCount, @currentRow
+SET @orderId = attributeValue("OrderId")
+set @itemRows = lookuprows("ampscript30-day16-order-details","OrderId", @orderId)
+set @itemsRowCount = rowcount(@itemRows)
+]%%
+<p>
+Hi %%FirstName%%,
+Thanks for your order! Good things are coming your way
+</p>
+
+%%[
+IF @orderCount > 0 THEN
+for @counter = 1 to @itemsRowCount do
+  set @currentRow = row(@itemRows, @counter)
+]%%
+  - %%=field(@currentRow, "ProductName")=%%: %%=field(@currentRow, "ProductDesc")=%% %%=field(@currentRow, "ProductQty")=%% at $%%=field(@currentRow, "ProductPrice")=%% <br>    
+%%[
+NEXT @counter 
+ELSE RaiseError('no rows found', true)
+ENDIF
+]%%
+]%%
+<p>
+If you have any questions, reply to this email or contact us at hello@nexttelecom.com
+</p>
+Best regards,
+Next Telecom

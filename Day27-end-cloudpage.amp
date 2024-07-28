@@ -1,0 +1,92 @@
+%%[
+  /* Decalre Variables */ 
+  VAR @subscriberKey, @NPS, @feedback
+  
+  /* Retrieve values from query string parameters */  
+  SET @subscriberKey = QueryParameter("SubscriberKey")  
+  SET @NPS = QueryParameter("NPS")  
+  SET @feedback = QueryParameter("feedback")  
+
+  
+  /* Check if form has been submitted */
+  IF RequestParameter("submitted") == "true" THEN  
+    
+  /* Upsert data to data extension */ 
+  
+  upsertData("ampscript30-day27-survey", 1, "SubscriberKey", @subscriberKey, "NPS", @NPS, "feedback", @feedback)  
+  
+  /* Display success message */  
+  SET @success = "Thank you! Your review has been sent."
+  
+  ENDIF
+]%%
+
+
+  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Sabuhi Yahyayev, AMPscript30">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Day 27 Challenge </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+  
+  
+    
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none fs-4">
+      Your Logo
+    </a>
+  </header>
+
+  %%[ IF Empty(@subscriberKey) THEN ]%%
+  <main>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <p class="alert alert-primary">The link has expired. This can occur if the link was forwarded or if you did not click the link from the email.</p>
+      </div>
+    </div>
+  </main>
+  
+  %%[ ELSE ]%% 
+
+
+
+  <main>
+    <div class="row">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h1>Survey</h1>
+        %%[ IF @NPS > 8 then       
+          upsertData("ampscript30-day27-survey", 1, "SubscriberKey", @subscriberKey, "NPS", @NPS, "feedback", @feedback)   
+        ]%% 
+          <p class="fs-5">Thanks for your Opinion. Your review has been sent.</p>
+        %%[ ELSE ]%%
+          <p class="fs-5">We're sorry that we couldn't delight you. What
+          could we have done differently to improve your experience?</p>
+        %%[ IF NOT empty(@success) THEN ]%%
+          <p class="alert alert-success">%%=v(@success)=%%</p>
+        %%[ ENDIF ]%%
+        <form method="post">
+          <input type="hidden" name="submitted" value="true">
+          <input type="hidden" name="SubscriberKey" value="%%=v(@subscriberKey)=%%">
+          <input type="hidden" name="NPS" value="%%=v(@NPS)=%%">
+          <textarea name="feedback" rows="4" cols="50" value="%%=v(@feedback)=%%"> </textarea> <br><br>
+          <button type="submit" class="btn btn-primary btn-lg">Confirm Subscription</button>
+        </form>
+        %%[ ENDIF ]%%
+   %%[ ENDIF ]%%
+      </div>
+    </div>
+  </main>
+  
+  
+  <footer class="pt-5 my-5 text-muted border-top">
+    Created for AMPscript30 &middot; &copy; 2023
+  </footer>
+</div>
+      
+  

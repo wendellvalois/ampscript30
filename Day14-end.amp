@@ -1,0 +1,27 @@
+%%[
+VAR @FirstName, @LastName, @SendDate, @SubscriberKey, @email
+set @FirstName = attributeValue('FirstName'),
+set @LastName = attributeValue('LastName')
+set @email = attributeValue('email')
+set @SendDate = now(1)
+set @SubscriberKey = attributeValue('SubscriberKey')
+
+UpsertDE('ampscript30-day14-reconfirmation-log', 1,
+          'SubscriberKey', @SubscriberKey,
+          'Email', emailaddr,
+          'FirstName', @FirstName,
+          'LastName', @LastName,
+          'SendDate', @SendDate)
+]%%
+
+Hi %%=v(@FirstName)=%%,
+We hope you've been enjoying our services over the past few months. We wanted to remind you that we periodically ask our customers to confirm their interest in receiving our emails.
+
+If you're still interested in receiving our emails, please click the link below to confirm your subscription. It only takes a few seconds!
+
+Confirm Subscription 
+
+Thanks for being a valued customer. We look forward to continuing to serve you.
+
+Best regards,
+Next Media

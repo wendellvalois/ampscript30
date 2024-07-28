@@ -1,0 +1,36 @@
+%%[
+VAR @FirstName, @LastName, @SendDate, @SubscriberKey, @email
+set @FirstName = QueryParameter('FirstName'),
+set @LastName = QueryParameter('LastName')
+set @email = QueryParameter('email')
+set @SendDate = QueryParameter('SendDate')
+set @SubscriberKey = QueryParameter('SubscriberKey')
+]%%
+
+<p>
+ Hi, your subscriberkey is %%SubscriberKey%%,<br>
+  Ok, lets try again %%=v(@SubscriberKey)=%%<br>  
+  Hi %%=v(@FirstName)=%% %%=v(@LastName)=%%<br>
+  You got  %%=v(@email)=%% %%=v(@SendDate)=%%<br>
+  
+</p>
+
+<h1>
+  Subscription Preferences
+</h1>
+<p>
+There is only one more thing to do: click the confirmation button below to continue receiving emails from us.  
+</p>
+
+
+<!--
+/* 
+Formulário
+<input name="SubscriberKey" type="hidden" value="%%=v(@SubscriberKey)=%%">
+<input name="Email" type="hidden" value="%%=v(@Email)=%%">
+<input name="FirstName" type="hidden" value="%%=v(@FirstName)=%%">
+<input name="LastName" type="hidden" value="%%=v(@LastName)=%%">
+<input name="SendDate" type="hidden" value="%%=v(@SendDate)=%%">
+<input name="ConfirmationDate" type="hidden" value="%%=Now()=%%">
+*/
+ -->

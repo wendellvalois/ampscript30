@@ -1,0 +1,18 @@
+%%[
+set @email = attributeValue("email");
+]%%
+
+<p>
+Hello %%FirstName%% %%LastName%%,
+</p>
+<p>
+Thank you for your interest to our new product line! Click on the link below for a special promo code for your next purchase 
+</p>
+<p>  
+  <a href="%%=CloudPagesUrl(32287, 'email', @email)=%%"> Click for Promo code </a>
+</p>
+
+<p>
+Best regards,
+The Next Beauty
+</p>
